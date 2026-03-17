@@ -1,9 +1,9 @@
 FROM php:8.2-cli
 
-# Extensiones PHP necesarias
+# Extensiones PHP necesarias + PostgreSQL
 RUN apt-get update && apt-get install -y \
-    git unzip curl libzip-dev libicu-dev libonig-dev \
-    && docker-php-ext-install pdo pdo_mysql zip intl mbstring
+    git unzip curl libzip-dev libicu-dev libonig-dev libpq-dev \
+    && docker-php-ext-install pdo pdo_mysql pdo_pgsql zip intl mbstring
 
 # Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
